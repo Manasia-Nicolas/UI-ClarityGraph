@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "graphwidget.h"
+#include <QListWidget>
+#include <QComboBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,5 +22,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    GraphWidget *graphWidget;
+    QListWidget *nodeList;       // List of all nodes
+    QComboBox   *typeSelector;
+    QComboBox *privSelector;
 };
 #endif // MAINWINDOW_H

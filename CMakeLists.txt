@@ -17,12 +17,15 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        graphwidget.h
+        graphwidget.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(UI-ClarityGraph
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        #graphwidget.h graphwidget.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET UI-ClarityGraph APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -42,6 +45,7 @@ else()
     endif()
 endif()
 
+target_link_libraries(UI-ClarityGraph PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(UI-ClarityGraph PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
