@@ -354,6 +354,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/RowNumberDelegate.h",
+			"MU",
+			"EWIEGA46WW/moc_RowNumberDelegate.cpp",
+			null
+		],
+		[
 			"/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/graphwidget.h",
 			"MU",
 			"EWIEGA46WW/moc_graphwidget.cpp",
@@ -363,6 +369,18 @@
 			"/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/namedelegate.h",
+			"MU",
+			"EWIEGA46WW/moc_namedelegate.cpp",
+			null
+		],
+		[
+			"/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/topbar.h",
+			"MU",
+			"EWIEGA46WW/moc_topbar.cpp",
 			null
 		]
 	],
@@ -426,6 +444,11 @@
 	"SOURCES" : 
 	[
 		[
+			"/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/RowNumberDelegate.cpp",
+			"MU",
+			null
+		],
+		[
 			"/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/graphwidget.cpp",
 			"MU",
 			null
@@ -437,6 +460,16 @@
 		],
 		[
 			"/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/namedelegate.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/topbar.cpp",
 			"MU",
 			null
 		]

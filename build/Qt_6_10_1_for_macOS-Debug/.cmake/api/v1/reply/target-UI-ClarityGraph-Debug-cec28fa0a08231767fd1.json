@@ -69,13 +69,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 66,
+				"line" : 70,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 48,
+				"line" : 52,
 				"parent" : 0
 			},
 			{
@@ -299,7 +299,10 @@
 				0,
 				1,
 				2,
-				6
+				6,
+				8,
+				10,
+				12
 			]
 		}
 	],
@@ -417,7 +420,10 @@
 				0,
 				1,
 				2,
-				6
+				6,
+				8,
+				10,
+				12
 			]
 		},
 		{
@@ -426,7 +432,10 @@
 			[
 				3,
 				5,
-				7
+				7,
+				9,
+				11,
+				13
 			]
 		},
 		{
@@ -440,14 +449,14 @@
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				8
+				14
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				9
+				15
 			]
 		}
 	],
@@ -491,6 +500,39 @@
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "graphwidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "namedelegate.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "namedelegate.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "RowNumberDelegate.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "RowNumberDelegate.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "topbar.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "topbar.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

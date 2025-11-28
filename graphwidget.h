@@ -3,20 +3,21 @@
 #include <vector>
 
 struct NodeInfo {
-    double x, y;
-    QString type;
+    double x = 0, y = 0;
+    QString name = "Node";
+    QString type = "Machine";
     QString privilege = "Low";
+
     QColor color;
     QColor colorBorder;
 
     NodeInfo() {}
 
-    NodeInfo(double x, double y, const QString &type, const QString &priv)
-        : x(x), y(y), type(type), privilege(priv)
-    {
+    void updateColors() {
         color = colorForType(type);
-        colorBorder = colorBorderForPriv(priv);
+        colorBorder = colorBorderForPriv(privilege);
     }
+
     static QColor colorForType(const QString &type)
     {
         if (type == "Machine")  return QColor("#1f77b4");
@@ -26,16 +27,15 @@ struct NodeInfo {
         if (type == "Router")   return QColor("#9467bd");
         return Qt::black;
     }
+
     static QColor colorBorderForPriv(const QString &priv)
     {
-        if(priv == "Low") return QColor("#1f77b4");
-        if(priv == "Medium") return QColor("#ff7f0e");
-        if(priv == "High") return QColor("#d62728");
+        if (priv == "Low")    return QColor("#1f77b4");
+        if (priv == "Medium") return QColor("#ff7f0e");
+        if (priv == "High")   return QColor("#d62728");
         return Qt::black;
     }
 };
-
-
 
 class GraphWidget : public QWidget {
     Q_OBJECT
@@ -48,7 +48,7 @@ public:
 protected:
     void paintEvent(QPaintEvent *event) override;
 
-    // NEW for zoom & pan:
+    // Zoom & pan
     void wheelEvent(QWheelEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -61,9 +61,18 @@ public:
     double zoom = 1.0;
     double offsetX = 0;
     double offsetY = 0;
+
     int selectedNode = -1;
 
     bool dragging = false;
     QPoint lastMousePos;
+
+    bool draggingNode = false;
+    int draggedNodeIndex = -1;
+    QPointF dragOffsetGraph;
+
     QPointF screenToGraph(const QPointF &p, double zoom, double offsetX, double offsetY);
+
+signals:
+    void nodeClicked(int index);   // used to sync with node list
 };

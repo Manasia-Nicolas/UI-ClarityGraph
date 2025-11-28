@@ -1,0 +1,53 @@
+{
+    "edges": [
+        [
+            0,
+            1
+        ],
+        [
+            2,
+            3
+        ],
+        [
+            3,
+            4
+        ]
+    ],
+    "nodes": [
+        {
+            "name": "Node 0",
+            "privilege": "Low",
+            "type": "Machine",
+            "x": 509,
+            "y": 67
+        },
+        {
+            "name": "Node 1",
+            "privilege": "Low",
+            "type": "Machine",
+            "x": 386,
+            "y": 15
+        },
+        {
+            "name": "Node 2",
+            "privilege": "Low",
+            "type": "Machine",
+            "x": 45,
+            "y": 125
+        },
+        {
+            "name": "Node 3",
+            "privilege": "Low",
+            "type": "Machine",
+            "x": 516,
+            "y": 542
+        },
+        {
+            "name": "Node 4",
+            "privilege": "Low",
+            "type": "Machine",
+            "x": 13,
+            "y": 132
+        }
+    ]
+}

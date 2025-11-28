@@ -19,6 +19,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void autoSave();
 
 private:
     Ui::MainWindow *ui;

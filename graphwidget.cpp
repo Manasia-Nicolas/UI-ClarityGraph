@@ -2,6 +2,7 @@
 #include <QPainter>
 #include <QWheelEvent>
 #include <QMouseEvent>
+#include <QtMath>
 
 GraphWidget::GraphWidget(QWidget *parent)
     : QWidget(parent)
@@ -10,7 +11,7 @@ GraphWidget::GraphWidget(QWidget *parent)
 
     setStyleSheet("background-color: white;");
     QPalette pal = palette();
-    pal.setColor(QPalette::Window, Qt::white);   // force white background
+    pal.setColor(QPalette::Window, Qt::white);
     setPalette(pal);
 
     qDebug() << "GraphWidget constructed:" << this;
@@ -32,77 +33,82 @@ void GraphWidget::paintEvent(QPaintEvent *event)
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing);
 
-
-    p.fillRect(rect(), Qt::white);  // paint background white
+    p.fillRect(rect(), Qt::white);
 
     p.translate(offsetX, offsetY);
     p.scale(zoom, zoom);
 
+    // ------------------------
+    // Draw edges
+    // ------------------------
     p.setPen(QPen(Qt::darkGray, 2));
 
-    for(int i = 0; i < adj.size(); ++i)
-        for(int neigh : adj[i]){
-
-            if(i < neigh){
+    for (int i = 0; i < adj.size(); ++i)
+        for (int neigh : adj[i]) {
+            if (i < neigh) {
                 const auto &a = nodes[i];
                 const auto &b = nodes[neigh];
-
                 p.drawLine(QPointF(a.x, a.y), QPointF(b.x, b.y));
             }
         }
 
-    int index = 0;
-    for (const auto &pt : nodes) {
+    // ------------------------
+    // Draw nodes (with halo)
+    // ------------------------
+    for (int i = 0; i < nodes.size(); i++) {
+        const auto &pt = nodes[i];
 
-        if (index == selectedNode) {
+        if (i == selectedNode) {
 
-            // --- Outer blue glow ---
-            p.setPen(QPen(QColor(0, 120, 255, 180), 6));   // semi-transparent blue
+            // Outer blue glow
+            p.setPen(QPen(QColor(0, 120, 255, 180), 6));
             p.setBrush(Qt::NoBrush);
             p.drawEllipse(QPointF(pt.x, pt.y), 12, 12);
 
-            // --- Inner white separation ring ---
+            // inner white ring
             p.setPen(QPen(Qt::white, 3));
             p.setBrush(Qt::NoBrush);
             p.drawEllipse(QPointF(pt.x, pt.y), 8, 8);
 
-            // --- Original node circle ---
+            // actual node
             p.setPen(pt.colorBorder);
             p.setBrush(pt.color);
             p.drawEllipse(QPointF(pt.x, pt.y), 6, 6);
         }
         else {
-            // normal node
             p.setPen(pt.colorBorder);
             p.setBrush(pt.color);
             p.drawEllipse(QPointF(pt.x, pt.y), 5, 5);
         }
+        p.setPen(Qt::black);
+        p.setBrush(Qt::NoBrush);
+        p.setFont(QFont("Arial", 10));
 
-        ++index;
+        QString label = (pt.name.isEmpty()
+                            ? QString("Node ") + QString::number(i)
+                            : pt.name);
+
+        p.drawText(QPointF(pt.x + 8, pt.y - 8), label);
+
+
     }
 }
 
 void GraphWidget::wheelEvent(QWheelEvent *event)
 {
-    // Position of cursor in widget coordinates
     QPointF cursorPos = event->position();
 
-    // Convert cursor to graph coordinates BEFORE zoom
     QPointF graphBefore = (cursorPos - QPointF(offsetX, offsetY)) / zoom;
 
-    // Compute zoom factor
-    double degrees = event->angleDelta().y() / 8.0;    // wheel degrees
-    double steps   = degrees / 15.0;                   // wheel “steps”
+    double degrees = event->angleDelta().y() / 8.0;
+    double steps   = degrees / 15.0;
     double factor  = std::pow(1.05, steps);
 
     zoom *= factor;
-    if (zoom < 0.1) zoom = 0.1;
-    if (zoom > 10.0) zoom = 10.0;
+    zoom = std::clamp(zoom, 0.1, 10.0);
 
-    // Convert graph point to screen after zoom
     QPointF graphAfter = graphBefore * zoom + QPointF(offsetX, offsetY);
 
-    // Adjust offset so cursor stays on same graph point
     offsetX += cursorPos.x() - graphAfter.x();
     offsetY += cursorPos.y() - graphAfter.y();
 
@@ -114,12 +120,11 @@ void GraphWidget::mousePressEvent(QMouseEvent *event)
     dragging = true;
     lastMousePos = event->pos();
 
-    // Convert screen → graph coords
     QPointF g = screenToGraph(event->pos(), zoom, offsetX, offsetY);
 
-    // find nearest node within radius
     selectedNode = -1;
-    const double hitRadius = 10.0; // pixels in graph coords (will be scaled)
+
+    const double hitRadius = 10.0 / zoom;  // scale click radius with zoom
 
     for (int i = 0; i < nodes.size(); i++) {
         double dx = g.x() - nodes[i].x;
@@ -128,6 +133,12 @@ void GraphWidget::mousePressEvent(QMouseEvent *event)
 
         if (dist <= hitRadius) {
             selectedNode = i;
+            draggedNodeIndex = i;
+            draggingNode = true;
+
+            dragOffsetGraph = QPointF(nodes[i].x - g.x(), nodes[i].y - g.y());
+
+            emit nodeClicked(i);
             break;
         }
     }
@@ -137,6 +148,19 @@ void GraphWidget::mousePressEvent(QMouseEvent *event)
 
 void GraphWidget::mouseMoveEvent(QMouseEvent *event)
 {
+
+    QPointF g = screenToGraph(event->pos(), zoom, offsetX, offsetY);
+
+    if (draggingNode && draggedNodeIndex >= 0) {
+        // Move selected node
+        nodes[draggedNodeIndex].x = g.x() + dragOffsetGraph.x();
+        nodes[draggedNodeIndex].y = g.y() + dragOffsetGraph.y();
+
+        update();
+        return;
+    }
+
+    // Otherwise: pan
     if (dragging) {
         QPoint delta = event->pos() - lastMousePos;
         lastMousePos = event->pos();
@@ -147,9 +171,12 @@ void GraphWidget::mouseMoveEvent(QMouseEvent *event)
         update();
     }
 }
+
 void GraphWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     dragging = false;
+    draggingNode = false;
+    draggedNodeIndex = -1;
 }
 
 QPointF GraphWidget::screenToGraph(const QPointF &p, double zoom, double offsetX, double offsetY)
