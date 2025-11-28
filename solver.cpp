@@ -6,7 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <limits>
-#include <qDebug>
+#include <QDebug>
 
 using namespace std;
 
@@ -309,7 +309,7 @@ vector<int> distance_refinement_assignment(
 //------------------------------------------------------------
 
 
-std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int V, int E, const vector<vector<int>>& adj) {
+std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int V, int E, const vector<vector<int>>& adj, int heuristicIndex) {
     qDebug() << E;
 
     double C = 4.108;
@@ -368,16 +368,29 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     ///qDebug() << V;
     ///qDebug() << coords.size();
 
-    qDebug() << A_refined;
-    qDebug() << V << " " << E;
-    qDebug() << coords;
+    // Choose assignment based on UI-selected heuristic index
+    int h = heuristicIndex;
+    if (h < 0) h = 0;
+    if (h > 3) h = 3;
+
+    const std::vector<int>* chosenA = nullptr;
+    switch (h) {
+        case 0: chosenA = &A_spiral; break;           // Spiral heuristic
+        case 1: chosenA = &A_degree; break;           // Degree greedy heuristic
+        case 2: chosenA = &A_barycentric; break;      // Barycentric heuristic
+        case 3: default: chosenA = &A_refined; break; // Distance refined barycentric heuristic
+    }
 
     std::vector<std::pair<double, double>> res;
     res.clear();
-    for(int i = 0; i < A_refined.size(); ++i)
-        res.push_back(coords[A_refined[i]]);
-
-    ///qDebug() << coords;
+    res.reserve(V);
+    for (int i = 0; i < V && i < (int)chosenA->size(); ++i) {
+        int posIdx = (*chosenA)[i];
+        if (posIdx >= 0 && posIdx < (int)coords.size())
+            res.push_back(coords[posIdx]);
+        else
+            res.emplace_back(0.0, 0.0);
+    }
 
     return {k, res};
 }

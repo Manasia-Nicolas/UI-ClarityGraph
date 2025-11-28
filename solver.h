@@ -14,6 +14,7 @@ public:
     static std::pair<int, std::vector<std::pair<double, double>>> computeLayout(
         int V,
         int E,
-        const std::vector<std::vector<int>>& adj
+        const std::vector<std::vector<int>>& adj,
+        int heuristicIndex
         );
 };
