@@ -3,4 +3,3 @@
 #include "EWIEGA46WW/moc_graphwidget.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"
 #include "EWIEGA46WW/moc_namedelegate.cpp"
-#include "EWIEGA46WW/moc_topbar.cpp"

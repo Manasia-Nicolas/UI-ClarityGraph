@@ -97,14 +97,6 @@ build CMakeFiles/UI-ClarityGraph.dir/RowNumberDelegate.cpp.o: CXX_COMPILER__UI-C
   OBJECT_DIR = CMakeFiles/UI-ClarityGraph.dir
   OBJECT_FILE_DIR = CMakeFiles/UI-ClarityGraph.dir
 
-build CMakeFiles/UI-ClarityGraph.dir/topbar.cpp.o: CXX_COMPILER__UI-ClarityGraph_unscanned_Debug /Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/topbar.cpp || cmake_object_order_depends_target_UI-ClarityGraph
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/UI-ClarityGraph.dir/topbar.cpp.o.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
-  OBJECT_DIR = CMakeFiles/UI-ClarityGraph.dir
-  OBJECT_FILE_DIR = CMakeFiles/UI-ClarityGraph.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target UI-ClarityGraph
@@ -113,7 +105,7 @@ build CMakeFiles/UI-ClarityGraph.dir/topbar.cpp.o: CXX_COMPILER__UI-ClarityGraph
 #############################################
 # Link the executable UI-ClarityGraph.app/Contents/MacOS/UI-ClarityGraph
 
-build UI-ClarityGraph.app/Contents/MacOS/UI-ClarityGraph: CXX_EXECUTABLE_LINKER__UI-ClarityGraph_Debug CMakeFiles/UI-ClarityGraph.dir/UI-ClarityGraph_autogen/mocs_compilation.cpp.o CMakeFiles/UI-ClarityGraph.dir/main.cpp.o CMakeFiles/UI-ClarityGraph.dir/mainwindow.cpp.o CMakeFiles/UI-ClarityGraph.dir/graphwidget.cpp.o CMakeFiles/UI-ClarityGraph.dir/namedelegate.cpp.o CMakeFiles/UI-ClarityGraph.dir/RowNumberDelegate.cpp.o CMakeFiles/UI-ClarityGraph.dir/topbar.cpp.o | /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/QtCore || UI-ClarityGraph_autogen UI-ClarityGraph_autogen_timestamp_deps
+build UI-ClarityGraph.app/Contents/MacOS/UI-ClarityGraph: CXX_EXECUTABLE_LINKER__UI-ClarityGraph_Debug CMakeFiles/UI-ClarityGraph.dir/UI-ClarityGraph_autogen/mocs_compilation.cpp.o CMakeFiles/UI-ClarityGraph.dir/main.cpp.o CMakeFiles/UI-ClarityGraph.dir/mainwindow.cpp.o CMakeFiles/UI-ClarityGraph.dir/graphwidget.cpp.o CMakeFiles/UI-ClarityGraph.dir/namedelegate.cpp.o CMakeFiles/UI-ClarityGraph.dir/RowNumberDelegate.cpp.o | /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/QtCore || UI-ClarityGraph_autogen UI-ClarityGraph_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk
   LINK_LIBRARIES = -Wl,-rpath,/Users/nicolas/Qt/6.10.1/macos/lib  /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets  /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui  -framework AppKit  -framework OpenGL  -framework ImageIO  -framework Metal  /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/QtCore  -framework IOKit  -framework DiskArbitration  -framework UniformTypeIdentifiers
   LINK_PATH = -F/Users/nicolas/Qt/6.10.1/macos/lib

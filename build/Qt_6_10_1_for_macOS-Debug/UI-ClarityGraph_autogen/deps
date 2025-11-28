@@ -739,8 +739,6 @@ UI-ClarityGraph_autogen/timestamp: \
 	/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/mainwindow.h \
 	/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/namedelegate.cpp \
 	/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/namedelegate.h \
-	/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/topbar.cpp \
-	/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/topbar.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20functional.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20iterator.h \
@@ -792,7 +790,6 @@ UI-ClarityGraph_autogen/timestamp: \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qglobalstatic.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qhash.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qhashfunctions.h \
-	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qiodevice.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qiodevicebase.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qitemselectionmodel.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qiterable.h \
@@ -889,7 +886,6 @@ UI-ClarityGraph_autogen/timestamp: \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpaintdevice.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpalette.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpen.h \
-	/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpicture.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpixelformat.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpixmap.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpolygon.h \
@@ -907,8 +903,6 @@ UI-ClarityGraph_autogen/timestamp: \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qvalidator.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QComboBox \
-	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QHBoxLayout \
-	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLineEdit \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QListWidget \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow \
@@ -919,13 +913,8 @@ UI-ClarityGraph_autogen/timestamp: \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractscrollarea.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractslider.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractspinbox.h \
-	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qboxlayout.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qcombobox.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qframe.h \
-	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qgridlayout.h \
-	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlabel.h \
-	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlayout.h \
-	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlayoutitem.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlineedit.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlistview.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlistwidget.h \
