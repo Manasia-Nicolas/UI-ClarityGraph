@@ -1,0 +1,31 @@
+{
+    "edges": [
+        [
+            1,
+            2
+        ]
+    ],
+    "nodes": [
+        {
+            "name": "Node 0",
+            "privilege": "Low",
+            "type": "Machine",
+            "x": 137.11760999172105,
+            "y": 134.8842818083066
+        },
+        {
+            "name": "Node 1",
+            "privilege": "Low",
+            "type": "Machine",
+            "x": 80.26843860519246,
+            "y": 87.16625759084731
+        },
+        {
+            "name": "Node 2",
+            "privilege": "Low",
+            "type": "Machine",
+            "x": 143.70476222287132,
+            "y": 85.0189346722677
+        }
+    ]
+}

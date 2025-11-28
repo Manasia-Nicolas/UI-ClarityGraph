@@ -1,0 +1,9 @@
+/home/bk/CLionProjects/UI-ClarityGraph/build/CMakeFiles/UI-ClarityGraph.dir
+/home/bk/CLionProjects/UI-ClarityGraph/build/CMakeFiles/edit_cache.dir
+/home/bk/CLionProjects/UI-ClarityGraph/build/CMakeFiles/rebuild_cache.dir
+/home/bk/CLionProjects/UI-ClarityGraph/build/CMakeFiles/list_install_components.dir
+/home/bk/CLionProjects/UI-ClarityGraph/build/CMakeFiles/install.dir
+/home/bk/CLionProjects/UI-ClarityGraph/build/CMakeFiles/install/local.dir
+/home/bk/CLionProjects/UI-ClarityGraph/build/CMakeFiles/install/strip.dir
+/home/bk/CLionProjects/UI-ClarityGraph/build/CMakeFiles/UI-ClarityGraph_autogen_timestamp_deps.dir
+/home/bk/CLionProjects/UI-ClarityGraph/build/CMakeFiles/UI-ClarityGraph_autogen.dir
