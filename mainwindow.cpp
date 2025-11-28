@@ -3,6 +3,7 @@
 #include "graphwidget.h"
 #include "namedelegate.h"
 #include "RowNumberDelegate.h"
+#include "solver.h"
 
 #include <QTimer>
 #include <QDebug>
@@ -526,6 +527,9 @@ MainWindow::MainWindow(QWidget *parent)
         connect(edgeEditor, &QTextEdit::textChanged,
                 this, [this, edgeEditor]() {
 
+                    // -------------------------
+                    // Parse edges
+                    // -------------------------
                     QStringList lines =
                         edgeEditor->toPlainText().split("\n", Qt::SkipEmptyParts);
 
@@ -544,8 +548,11 @@ MainWindow::MainWindow(QWidget *parent)
                         return;
                     }
 
-                    // Build adjacency
+                    // -------------------------
+                    // Build NEW adjacency G
+                    // -------------------------
                     std::vector<std::vector<int>> G(maxNode + 1);
+
                     for (const QString &line : lines) {
                         auto s = line.split(" ", Qt::SkipEmptyParts);
                         if (s.size() != 2) continue;
@@ -554,17 +561,17 @@ MainWindow::MainWindow(QWidget *parent)
                         G[v].push_back(u);
                     }
 
-                    // Preserve old metadata
+                    // -------------------------
+                    // Resize or preserve nodes
+                    // -------------------------
                     std::vector<NodeInfo> old = graphWidget->nodes;
                     auto &nodes = graphWidget->nodes;
                     nodes.resize(maxNode + 1);
 
                     for (int i = 0; i <= maxNode; i++) {
-                        if (i < old.size())
+                        if (i < old.size()) {
                             nodes[i] = old[i];
-                        else {
-                            nodes[i].x = rand() % graphWidget->width();
-                            nodes[i].y = rand() % graphWidget->height();
+                        } else {
                             nodes[i].name = "Node " + QString::number(i);
                             nodes[i].type = "Machine";
                             nodes[i].privilege = "Low";
@@ -572,24 +579,56 @@ MainWindow::MainWindow(QWidget *parent)
                         }
                     }
 
-                    // Rebuild node list with editable flags ✔ FIXED
+                    // -------------------------
+                    // Compute E from NEW G
+                    // -------------------------
+                    int V = maxNode + 1;
+                    int E = 0;
+                    for (const auto &lst : G)
+                        E += lst.size();
+                    E /= 2;
+
+                    // -------------------------
+                    // Call layout solver
+                    // -------------------------
+                    std::pair<int, std::vector<std::pair<double,double>>> layout = Solver::computeLayout(V, E, G);
+
+                    ///qDebug() << layout;
+
+                    // -------------------------
+                    // Apply solver positions
+                    // (scaled to screen coordinates)
+                    // -------------------------
+                    double scale   = 60.0;
+                    double offsetX = 80.0;
+                    double offsetY = 80.0;
+
+                    qDebug() << "!";
+
+                    for (int i = 0; i < V; ++i) {
+                        nodes[i].x = layout.second[i].first  * scale + offsetX;
+                        nodes[i].y = layout.second[i].second * scale + offsetY;
+                    }
+
+                    // -------------------------
+                    // Rebuild node list labels
+                    // -------------------------
                     nodeList->clear();
                     for (int i = 0; i <= maxNode; i++) {
-
-                        QListWidgetItem *item =
-                            new QListWidgetItem(
-                                nodes[i].name +
-                                " (" + nodes[i].type + ") (" + nodes[i].privilege + ")"
-                                );
-
+                        QListWidgetItem *item = new QListWidgetItem(
+                            nodes[i].name +
+                            " (" + nodes[i].type + ") (" + nodes[i].privilege + ")"
+                            );
                         item->setFlags(item->flags() | Qt::ItemIsEditable);
                         nodeList->addItem(item);
                     }
 
+                    // -------------------------
+                    // Update graph
+                    // -------------------------
                     graphWidget->setAdjacency(G);
                     graphWidget->update();
                     autoSave();
-
                 });
     });
 }

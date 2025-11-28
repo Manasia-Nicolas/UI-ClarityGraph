@@ -739,6 +739,8 @@ UI-ClarityGraph_autogen/timestamp: \
 	/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/mainwindow.h \
 	/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/namedelegate.cpp \
 	/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/namedelegate.h \
+	/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/solver.cpp \
+	/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/solver.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20functional.h \
 	/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20iterator.h \

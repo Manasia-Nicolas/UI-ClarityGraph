@@ -28,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         namedelegate.h namedelegate.cpp
         RowNumberDelegate.h
         RowNumberDelegate.cpp
+        solver.h solver.cpp
 
         #graphwidget.h graphwidget.cpp
     )

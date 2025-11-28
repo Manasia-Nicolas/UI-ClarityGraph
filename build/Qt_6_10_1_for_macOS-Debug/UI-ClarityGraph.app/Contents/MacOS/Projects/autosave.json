@@ -5,8 +5,20 @@
             1
         ],
         [
+            0,
+            2
+        ],
+        [
+            0,
+            3
+        ],
+        [
             1,
-            6
+            2
+        ],
+        [
+            1,
+            3
         ]
     ],
     "nodes": [
@@ -14,50 +26,29 @@
             "name": "Node 0",
             "privilege": "Low",
             "type": "Machine",
-            "x": 509,
-            "y": 314
+            "x": 87.76920522907318,
+            "y": 142.31780907838885
         },
         {
             "name": "Node 1",
             "privilege": "Low",
             "type": "Machine",
-            "x": 386,
-            "y": 120
+            "x": 143.70476222287132,
+            "y": 85.0189346722677
         },
         {
             "name": "Node 2",
             "privilege": "Low",
             "type": "Machine",
-            "x": 391,
-            "y": 204
+            "x": 80.26843860519246,
+            "y": 87.16625759084731
         },
         {
             "name": "Node 3",
             "privilege": "Low",
             "type": "Machine",
-            "x": 348,
-            "y": 225
-        },
-        {
-            "name": "Node 4",
-            "privilege": "Low",
-            "type": "Machine",
-            "x": 177,
-            "y": 109
-        },
-        {
-            "name": "Node 5",
-            "privilege": "Low",
-            "type": "Machine",
-            "x": 13,
-            "y": 429
-        },
-        {
-            "name": "Server",
-            "privilege": "Medium",
-            "type": "Server",
-            "x": 287.2435721301363,
-            "y": 231.76250177836556
+            "x": 137.11760999172105,
+            "y": 134.8842818083066
         }
     ]
 }
