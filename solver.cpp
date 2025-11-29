@@ -6,13 +6,9 @@
 #include <fstream>
 #include <algorithm>
 #include <limits>
-<<<<<<< HEAD
 #include <qDebug>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/boyer_myrvold_planar_test.hpp>
-=======
-#include <QDebug>
->>>>>>> fd0587501fd72be52f04a2595574dc43a1a73896
 
 using namespace std;
 using namespace boost;
@@ -21,6 +17,52 @@ using namespace boost;
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
+
+static bool segmentsIntersectSolver(
+    double Ax, double Ay, double Bx, double By,
+    double Cx, double Cy, double Dx, double Dy)
+{
+    auto ccw = [](double Ax, double Ay, double Bx, double By, double Cx, double Cy){
+        return (Cy - Ay) * (Bx - Ax) > (By - Ay) * (Cx - Ax);
+    };
+
+    return ccw(Ax,Ay,Cx,Cy,Dx,Dy) != ccw(Bx,By,Cx,Cy,Dx,Dy) &&
+           ccw(Ax,Ay,Bx,By,Cx,Cy) != ccw(Ax,Ay,Bx,By,Dx,Dy);
+}
+
+static int countCrossingsSolver(
+    const vector<pair<double,double>>& pos,
+    const vector<vector<int>>& adj)
+{
+    int count = 0;
+    int n = adj.size();
+
+    for (int u = 0; u < n; u++) {
+        for (int v : adj[u]) {
+            if (u >= v) continue;
+
+            double Ax = pos[u].first,  Ay = pos[u].second;
+            double Bx = pos[v].first,  By = pos[v].second;
+
+            for (int x = u + 1; x < n; x++) {
+                for (int y : adj[x]) {
+                    if (x >= y) continue;
+                    if (u == x || u == y || v == x || v == y) continue;
+
+                    double Cx = pos[x].first,  Cy = pos[x].second;
+                    double Dx = pos[y].first,  Dy = pos[y].second;
+
+                    if (segmentsIntersectSolver(Ax,Ay,Bx,By, Cx,Cy,Dx,Dy))
+                        count++;
+                }
+            }
+        }
+    }
+
+    return count;
+}
+
+
 
 // Type aliases for Boost graph
 using BoostGraph = adjacency_list<vecS, vecS, undirectedS>;
@@ -398,21 +440,66 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     };
 
 */
+    auto buildLayout = [&](const vector<int>& A) {
+        vector<pair<double,double>> L;
+        L.reserve(V);
+        for (int i = 0; i < V; i++) {
+            int posIdx = A[i];
+            L.push_back(coords[posIdx]);
+        }
+        return L;
+    };
+
     ///qDebug() << V;
     ///qDebug() << coords.size();
+
+    vector<pair<double,double>> layoutSpiral      = buildLayout(A_spiral);
+    vector<pair<double,double>> layoutDegree      = buildLayout(A_degree);
+    vector<pair<double,double>> layoutBary        = buildLayout(A_barycentric);
+    vector<pair<double,double>> layoutRefined     = buildLayout(A_refined);
+
+    vector<int> crossings(4);
+    crossings[0] = countCrossingsSolver(layoutSpiral,  adj);
+    crossings[1] = countCrossingsSolver(layoutDegree,  adj);
+    crossings[2] = countCrossingsSolver(layoutBary,    adj);
+    crossings[3] = countCrossingsSolver(layoutRefined, adj);
+
+    int bestIndex = 0;
+    int bestVal = crossings[0];
+    for (int i = 1; i < 4; i++) {
+        if (crossings[i] < bestVal) {
+            bestVal = crossings[i];
+            bestIndex = i;
+        }
+    }
+
+    qDebug() << bestIndex;
 
     // Choose assignment based on UI-selected heuristic index
     int h = heuristicIndex;
     if (h < 0) h = 0;
-    if (h > 3) h = 3;
+    if (h > 4) h = 4;
 
     const std::vector<int>* chosenA = nullptr;
+    if(h != 4)
     switch (h) {
+        qDebug() << "%";
         case 0: chosenA = &A_spiral; break;           // Spiral heuristic
         case 1: chosenA = &A_degree; break;           // Degree greedy heuristic
         case 2: chosenA = &A_barycentric; break;      // Barycentric heuristic
         case 3: default: chosenA = &A_refined; break; // Distance refined barycentric heuristic
     }
+    if(h == 4){
+        qDebug() << "§";
+        switch (bestIndex) {
+        case 0: chosenA = &A_spiral; break;
+        case 1: chosenA = &A_degree, qDebug() << "±"; break;
+        case 2: chosenA = &A_barycentric; break;
+        case 3: chosenA = &A_refined; break;
+        default: chosenA = &A_degree; break;
+        }
+    }
+
 
     std::vector<std::pair<double, double>> res;
     res.clear();

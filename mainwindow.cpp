@@ -162,7 +162,8 @@ MainWindow::MainWindow(QWidget *parent)
             "Spiral heuristic",
             "Degree greedy heuristic",
             "Barycentric heuristic",
-            "distance refined barycentric heuristic"
+            "distance refined barycentric heuristic",
+            "Best heuristic"
         });
         heuristicSelector->setSizeAdjustPolicy(QComboBox::AdjustToContents);
         heuristicSelector->setToolTip("Choose layout heuristic");
@@ -180,7 +181,7 @@ MainWindow::MainWindow(QWidget *parent)
                 this, [this](int idx){
                     // clamp to 0..3 to be safe if items change
                     if (idx < 0) idx = 0;
-                    if (idx > 3) idx = 3;
+                    if (idx > 4) idx = 4;
                     heuristicIndex = idx;
                 });
 
