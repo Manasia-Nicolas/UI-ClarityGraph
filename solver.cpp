@@ -433,7 +433,7 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
         k = 0;
 
     long long r = (long long)ceil(sqrt((double)V)) + 1;
-    double perturb = 0.3;
+    double perturb = 2;
 
     mt19937 rng(123456);
     uniform_real_distribution<double> d(-perturb, perturb);
@@ -444,8 +444,8 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
 
     for (long long i = 0; i < r; i++) {
         for (long long j = 0; j < r; j++) {
-            double x = (double)j * 1.5 + d(rng);
-            double y = (double)i * 1.5 + d(rng);
+            double x = (double)j + d(rng);
+            double y = (double)i + d(rng);
             coords.emplace_back(x, y);
         }
     }
@@ -457,7 +457,7 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     vector<int> A_degree      = degree_greedy_assignment(V, adj, spiral);
     vector<int> A_barycentric = barycentric_assignment(V, adj, spiral);
     vector<int> A_brute;
-    if (V < 11)
+    if (V < 10)
     {
         A_brute = brute_force_layout(V, adj, coords);
     }
@@ -548,7 +548,7 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     }
 
     // check the brute force solution
-    if (V < 11)
+    if (V < 10)
     {
         int bruteForceCrossings =  countCrossingsSolver(layoutBrute, adj);
         qDebug() << "bruteForceCrossings " << bruteForceCrossings ;
