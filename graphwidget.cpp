@@ -14,6 +14,36 @@ GraphWidget::GraphWidget(QWidget *parent)
     pal.setColor(QPalette::Window, Qt::white);
     setPalette(pal);
 
+    // Animation timer ~60 FPS
+    connect(&animTimer, &QTimer::timeout, this, [this]() {
+        if (!animating) { animTimer.stop(); return; }
+        qint64 elapsed = animClock.elapsed();
+        double t = animDurationMs > 0 ? std::min(1.0, elapsed / static_cast<double>(animDurationMs)) : 1.0;
+        QEasingCurve curve(QEasingCurve::InOutCubic);
+        double e = curve.valueForProgress(t);
+
+        // Ensure vectors are sized
+        if (animStartPos.size() != nodes.size()) animStartPos.resize(nodes.size(), QPointF());
+        if (animTargetPos.size() != nodes.size()) animTargetPos.resize(nodes.size(), QPointF());
+
+        for (int i = 0; i < static_cast<int>(nodes.size()); ++i) {
+            if (draggingNode && i == draggedNodeIndex) continue; // don't fight user drag
+            const QPointF &s = animStartPos[i];
+            const QPointF &d = animTargetPos[i];
+            double nx = s.x() + (d.x() - s.x()) * e;
+            double ny = s.y() + (d.y() - s.y()) * e;
+            nodes[i].x = nx;
+            nodes[i].y = ny;
+        }
+        update();
+        emit nodeMoved(); // allow live crossing updates
+
+        if (t >= 1.0 - 1e-6) {
+            animating = false;
+            animTimer.stop();
+        }
+    });
+
     qDebug() << "GraphWidget constructed:" << this;
     qDebug() << "GraphWidget initial size:" << size();
 }
@@ -26,6 +56,30 @@ void GraphWidget::setNodes(const std::vector<NodeInfo> &nd) {
 void GraphWidget::setAdjacency(const std::vector<std::vector<int>> &g) {
     adj = g;
     update();
+}
+
+void GraphWidget::animateTo(const std::vector<QPointF> &targets, int durationMs)
+{
+    if (targets.size() != nodes.size()) {
+        // Resize or ignore extra
+        // We'll create a targets array same size as nodes
+    }
+
+    animStartPos.resize(nodes.size());
+    animTargetPos.resize(nodes.size());
+
+    for (int i = 0; i < static_cast<int>(nodes.size()); ++i) {
+        animStartPos[i] = QPointF(nodes[i].x, nodes[i].y);
+        if (i < static_cast<int>(targets.size()))
+            animTargetPos[i] = targets[i];
+        else
+            animTargetPos[i] = animStartPos[i];
+    }
+
+    animDurationMs = durationMs;
+    animClock.restart();
+    animating = true;
+    if (!animTimer.isActive()) animTimer.start(16);
 }
 
 void GraphWidget::paintEvent(QPaintEvent *event)

@@ -718,9 +718,30 @@ MainWindow::MainWindow(QWidget *parent)
                     E /= 2;
 
                     // -------------------------
-                    // Positions update: either auto-layout or randomized
+                    // Positions update: either auto-layout (animated) or randomized
                     // -------------------------
                     if (autoUpdateCheck && autoUpdateCheck->isChecked()) {
+                        // Place new nodes initially at their first neighbor's position
+                        int Vold = static_cast<int>(old.size());
+                        for (int i = Vold; i < V; ++i) {
+                            if (i < 0) continue;
+                            // find any neighbor that already existed
+                            int anchor = -1;
+                            if (i < static_cast<int>(G.size())) {
+                                for (int nb : G[i]) {
+                                    if (nb >= 0 && nb < Vold) { anchor = nb; break; }
+                                }
+                            }
+                            if (anchor >= 0 && anchor < static_cast<int>(nodes.size())) {
+                                nodes[i].x = nodes[anchor].x;
+                                nodes[i].y = nodes[anchor].y;
+                            } else if (!nodes.empty()) {
+                                // fallback: use node 0 as origin
+                                nodes[i].x = nodes[0].x;
+                                nodes[i].y = nodes[0].y;
+                            }
+                        }
+
                         auto layout = Solver::computeLayout(V, E, G, currentHeuristicIndex());
                         k = layout.first;
                         if (kLabel) kLabel->setText("k = " + QString::number(k));
@@ -728,10 +749,13 @@ MainWindow::MainWindow(QWidget *parent)
                         double scale   = 60.0;
                         double offsetX = 80.0;
                         double offsetY = 80.0;
+                        std::vector<QPointF> targets(V);
                         for (int i = 0; i < V && i < static_cast<int>(layout.second.size()); ++i) {
-                            nodes[i].x = layout.second[i].first  * scale + offsetX;
-                            nodes[i].y = layout.second[i].second * scale + offsetY;
+                            double tx = layout.second[i].first  * scale + offsetX;
+                            double ty = layout.second[i].second * scale + offsetY;
+                            targets[i] = QPointF(tx, ty);
                         }
+                        graphWidget->animateTo(targets, 450);
                     } else {
                         // Randomize positions only for newly created nodes and reset k
                         int Vold = static_cast<int>(old.size());
@@ -854,18 +878,20 @@ void MainWindow::recomputeLayoutFromGraphState()
     k = layout.first;
     if (kLabel) kLabel->setText("k = " + QString::number(k));
 
-    // Apply positions
+    // Build target positions and animate smoothly
     double scale   = 60.0;
     double offsetX = 80.0;
     double offsetY = 80.0;
+    std::vector<QPointF> targets(V);
     for (int i = 0; i < V && i < static_cast<int>(layout.second.size()); ++i) {
-        graphWidget->nodes[i].x = layout.second[i].first  * scale + offsetX;
-        graphWidget->nodes[i].y = layout.second[i].second * scale + offsetY;
+        double tx = layout.second[i].first  * scale + offsetX;
+        double ty = layout.second[i].second * scale + offsetY;
+        targets[i] = QPointF(tx, ty);
     }
+    graphWidget->animateTo(targets, 450);
 
-    // Update crossings label and repaint
+    // Update crossings label (will also update live via nodeMoved)
     crossings = countCrossings();
     if (crossLabel) crossLabel->setText("Crossings = " + QString::number(crossings));
-    graphWidget->update();
     autoSave();
 }

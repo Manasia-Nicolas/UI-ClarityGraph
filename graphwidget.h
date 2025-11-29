@@ -1,5 +1,8 @@
 #pragma once
 #include <QWidget>
+#include <QTimer>
+#include <QElapsedTimer>
+#include <QEasingCurve>
 #include <vector>
 
 struct NodeInfo {
@@ -45,6 +48,9 @@ public:
     void setNodes(const std::vector<NodeInfo> &pts);
     void setAdjacency(const std::vector<std::vector<int>> &g);
 
+    // Start smooth animation to target positions (graph coordinates)
+    void animateTo(const std::vector<QPointF> &targets, int durationMs = 400);
+
 protected:
     void paintEvent(QPaintEvent *event) override;
 
@@ -70,6 +76,14 @@ public:
     bool draggingNode = false;
     int draggedNodeIndex = -1;
     QPointF dragOffsetGraph;
+
+    // Animation state
+    QTimer animTimer;
+    QElapsedTimer animClock;
+    std::vector<QPointF> animStartPos;
+    std::vector<QPointF> animTargetPos;
+    int animDurationMs = 0;
+    bool animating = false;
 
     QPointF screenToGraph(const QPointF &p, double zoom, double offsetX, double offsetY);
 
