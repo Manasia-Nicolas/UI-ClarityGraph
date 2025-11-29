@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include <QRandomGenerator>
 #include "./ui_mainwindow.h"
 #include "graphwidget.h"
 #include "namedelegate.h"
@@ -173,11 +174,36 @@ MainWindow::MainWindow(QWidget *parent)
         QWidget *toolbarSpacer = new QWidget(this);
         toolbarSpacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
         toolbar->addWidget(toolbarSpacer);
+
+        // Auto update checkbox on the toolbar, placed to the left of the heuristic chooser
+        autoUpdateCheck = new QCheckBox("Auto-update", toolbar);
+        autoUpdateCheck->setChecked(true);
+        toolbar->addWidget(autoUpdateCheck);
+
+        // Heuristic chooser to the right of the checkbox
         toolbar->addWidget(heuristicSelector);
 
         // Initialize and track heuristic index (0..3)
         heuristicSelector->setCurrentIndex(0);
         heuristicIndex = 0;
+        heuristicSelector->setEnabled(autoUpdateCheck->isChecked());
+
+        // Toggle also controls whether the heuristic chooser is enabled
+        connect(autoUpdateCheck, &QCheckBox::toggled, this, [this](bool on){
+            if (heuristicSelector) heuristicSelector->setEnabled(on);
+            if (on) {
+                recomputeLayoutFromGraphState();
+            } else {
+                // Do not randomize existing nodes on toggle-off; just mark k unknown and refresh
+                k = -1;
+                if (kLabel) kLabel->setText("k = ?");
+                crossings = countCrossings();
+                if (crossLabel) crossLabel->setText("Crossings = " + QString::number(crossings));
+                graphWidget->update();
+                autoSave();
+            }
+        });
+
         connect(heuristicSelector, QOverload<int>::of(&QComboBox::currentIndexChanged),
                 this, [this](int idx){
                     // clamp to 0..3 to be safe if items change
@@ -185,8 +211,17 @@ MainWindow::MainWindow(QWidget *parent)
                     if (idx > 4) idx = 4;
                     heuristicIndex = idx;
 
-                    // Just trigger a recompute using current state
-                    recomputeLayoutFromGraphState();
+                    // Respect auto-update toggle
+                    if (autoUpdateCheck && autoUpdateCheck->isChecked()) {
+                        recomputeLayoutFromGraphState();
+                    } else {
+                        // When auto-update is off, do not randomize existing nodes on heuristic change.
+                        // Leave current positions unchanged and keep k as unknown.
+                        // Optionally ensure label shows unknown
+                        k = -1;
+                        if (kLabel) kLabel->setText("k = ?");
+                        graphWidget->update();
+                    }
                 });
 
         // --------------------------------------------------------
@@ -210,6 +245,7 @@ MainWindow::MainWindow(QWidget *parent)
         crossLabel = new QLabel("Crossings = 0");
         crossLabel->setStyleSheet("font-weight: bold; font-size: 16px; padding: 4px;");
         leftLayout->addWidget(crossLabel);
+
 
         // Node list
         QLabel *nodeLabel = new QLabel("Nodes:");
@@ -682,28 +718,26 @@ MainWindow::MainWindow(QWidget *parent)
                     E /= 2;
 
                     // -------------------------
-                    // Call layout solver
+                    // Positions update: either auto-layout or randomized
                     // -------------------------
-                    std::pair<int, std::vector<std::pair<double,double>>> layout = Solver::computeLayout(V, E, G, currentHeuristicIndex());
+                    if (autoUpdateCheck && autoUpdateCheck->isChecked()) {
+                        auto layout = Solver::computeLayout(V, E, G, currentHeuristicIndex());
+                        k = layout.first;
+                        if (kLabel) kLabel->setText("k = " + QString::number(k));
 
-                    k = layout.first;
-                    kLabel->setText("k = " + QString::number(k));   // <---- ADD THIS
-
-                    ///qDebug() << layout;
-
-                    // -------------------------
-                    // Apply solver positions
-                    // (scaled to screen coordinates)
-                    // -------------------------
-                    double scale   = 60.0;
-                    double offsetX = 80.0;
-                    double offsetY = 80.0;
-
-                    qDebug() << "!";
-
-                    for (int i = 0; i < V; ++i) {
-                        nodes[i].x = layout.second[i].first  * scale + offsetX;
-                        nodes[i].y = layout.second[i].second * scale + offsetY;
+                        double scale   = 60.0;
+                        double offsetX = 80.0;
+                        double offsetY = 80.0;
+                        for (int i = 0; i < V && i < static_cast<int>(layout.second.size()); ++i) {
+                            nodes[i].x = layout.second[i].first  * scale + offsetX;
+                            nodes[i].y = layout.second[i].second * scale + offsetY;
+                        }
+                    } else {
+                        // Randomize positions only for newly created nodes and reset k
+                        int Vold = static_cast<int>(old.size());
+                        randomizeNodePositionsInRange(Vold, V);
+                        k = -1;
+                        if (kLabel) kLabel->setText("k = ?");
                     }
 
                     // -------------------------
@@ -725,7 +759,7 @@ MainWindow::MainWindow(QWidget *parent)
                     graphWidget->setAdjacency(G);
 
                     crossings = countCrossings();
-                    crossLabel->setText("Crossings = " + QString::number(crossings));
+                    if (crossLabel) crossLabel->setText("Crossings = " + QString::number(crossings));
 
                     graphWidget->update();
                     autoSave();
@@ -749,6 +783,56 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::randomizeCurrentNodePositions()
+{
+    // Randomize positions for current nodes without running the solver
+    int V = static_cast<int>(graphWidget->nodes.size());
+    if (V <= 0) {
+        graphWidget->update();
+        return;
+    }
+
+    // Use a reasonable range in graph coordinates
+    double minX = 20.0, maxX = 500.0;
+    double minY = 20.0, maxY = 400.0;
+
+    for (int i = 0; i < V; ++i) {
+        double rx = QRandomGenerator::global()->generateDouble();
+        double ry = QRandomGenerator::global()->generateDouble();
+        graphWidget->nodes[i].x = minX + rx * (maxX - minX);
+        graphWidget->nodes[i].y = minY + ry * (maxY - minY);
+    }
+
+    // No k when randomized
+    k = -1;
+    if (kLabel) kLabel->setText("k = ?");
+
+    crossings = countCrossings();
+    if (crossLabel) crossLabel->setText("Crossings = " + QString::number(crossings));
+
+    graphWidget->update();
+    autoSave();
+}
+
+void MainWindow::randomizeNodePositionsInRange(int startIdx, int endExclusive)
+{
+    int V = static_cast<int>(graphWidget->nodes.size());
+    if (V <= 0) return;
+    if (startIdx < 0) startIdx = 0;
+    if (endExclusive > V) endExclusive = V;
+    if (startIdx >= endExclusive) return;
+
+    double minX = 20.0, maxX = 500.0;
+    double minY = 20.0, maxY = 400.0;
+
+    for (int i = startIdx; i < endExclusive; ++i) {
+        double rx = QRandomGenerator::global()->generateDouble();
+        double ry = QRandomGenerator::global()->generateDouble();
+        graphWidget->nodes[i].x = minX + rx * (maxX - minX);
+        graphWidget->nodes[i].y = minY + ry * (maxY - minY);
+    }
+}
 
 void MainWindow::recomputeLayoutFromGraphState()
 {

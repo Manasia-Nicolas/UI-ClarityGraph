@@ -6,6 +6,7 @@
 #include <QListWidget>
 #include <QComboBox>
 #include <QLabel>
+#include <QCheckBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,6 +30,10 @@ public:
 private:
     // Recompute layout and refresh UI using current graphWidget state and heuristic
     void recomputeLayoutFromGraphState();
+    // Randomize positions for current nodes and refresh UI (no solver)
+    void randomizeCurrentNodePositions();
+    // Randomize positions only for nodes in [startIdx, endExclusive)
+    void randomizeNodePositionsInRange(int startIdx, int endExclusive);
 
     Ui::MainWindow *ui;
     GraphWidget *graphWidget;
@@ -40,6 +45,7 @@ private:
     int crossings = 0;
     QLabel *crossLabel;
     QComboBox *heuristicSelector; // Top-right dropdown for heuristic selection
+    QCheckBox *autoUpdateCheck;   // Checkbox to toggle auto layout
 
     int heuristicIndex = 0;      // 0..3 maps to the selected heuristic
 };
