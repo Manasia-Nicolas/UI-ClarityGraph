@@ -159,11 +159,12 @@ MainWindow::MainWindow(QWidget *parent)
         // Top-right heuristic selector combo box placed on the main toolbar
         heuristicSelector = new QComboBox(toolbar);
         heuristicSelector->addItems({
+            "Best heuristic",
             "Spiral heuristic",
             "Degree greedy heuristic",
             "Barycentric heuristic",
             "distance refined barycentric heuristic",
-            "Best heuristic"
+
         });
         heuristicSelector->setSizeAdjustPolicy(QComboBox::AdjustToContents);
         heuristicSelector->setToolTip("Choose layout heuristic");
@@ -183,6 +184,9 @@ MainWindow::MainWindow(QWidget *parent)
                     if (idx < 0) idx = 0;
                     if (idx > 4) idx = 4;
                     heuristicIndex = idx;
+
+                    // Just trigger a recompute using current state
+                    recomputeLayoutFromGraphState();
                 });
 
         // --------------------------------------------------------
@@ -743,4 +747,41 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+void MainWindow::recomputeLayoutFromGraphState()
+{
+    // Use current graph state from graphWidget
+    const auto &G = graphWidget->adj;
+    int V = static_cast<int>(graphWidget->nodes.size());
+    if (V == 0 || G.empty()) {
+        graphWidget->update();
+        return;
+    }
+
+    int E = 0;
+    for (const auto &lst : G) E += static_cast<int>(lst.size());
+    E /= 2;
+
+    auto layout = Solver::computeLayout(V, E, G, currentHeuristicIndex());
+
+    // Update k label
+    k = layout.first;
+    if (kLabel) kLabel->setText("k = " + QString::number(k));
+
+    // Apply positions
+    double scale   = 60.0;
+    double offsetX = 80.0;
+    double offsetY = 80.0;
+    for (int i = 0; i < V && i < static_cast<int>(layout.second.size()); ++i) {
+        graphWidget->nodes[i].x = layout.second[i].first  * scale + offsetX;
+        graphWidget->nodes[i].y = layout.second[i].second * scale + offsetY;
+    }
+
+    // Update crossings label and repaint
+    crossings = countCrossings();
+    if (crossLabel) crossLabel->setText("Crossings = " + QString::number(crossings));
+    graphWidget->update();
+    autoSave();
 }

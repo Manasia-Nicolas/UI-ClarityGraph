@@ -27,6 +27,9 @@ public:
     int currentHeuristicIndex() const { return heuristicIndex; }
 
 private:
+    // Recompute layout and refresh UI using current graphWidget state and heuristic
+    void recomputeLayoutFromGraphState();
+
     Ui::MainWindow *ui;
     GraphWidget *graphWidget;
     QListWidget *nodeList;       // List of all nodes

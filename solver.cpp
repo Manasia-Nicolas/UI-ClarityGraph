@@ -6,7 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <limits>
-#include <qDebug>
+#include <QDebug>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/boyer_myrvold_planar_test.hpp>
 
@@ -467,7 +467,7 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     int bestIndex = 0;
     int bestVal = crossings[0];
     for (int i = 1; i < 4; i++) {
-        if (crossings[i] < bestVal) {
+        if (crossings[i] <= bestVal) {
             bestVal = crossings[i];
             bestIndex = i;
         }
@@ -481,15 +481,15 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     if (h > 4) h = 4;
 
     const std::vector<int>* chosenA = nullptr;
-    if(h != 4)
+    if(h != 0)
     switch (h) {
         qDebug() << "%";
-        case 0: chosenA = &A_spiral; break;           // Spiral heuristic
-        case 1: chosenA = &A_degree; break;           // Degree greedy heuristic
-        case 2: chosenA = &A_barycentric; break;      // Barycentric heuristic
-        case 3: default: chosenA = &A_refined; break; // Distance refined barycentric heuristic
+        case 1: chosenA = &A_spiral; break;           // Spiral heuristic
+        case 2: chosenA = &A_degree; break;           // Degree greedy heuristic
+        case 3: chosenA = &A_barycentric; break;      // Barycentric heuristic
+        case 4: default: chosenA = &A_refined; break; // Distance refined barycentric heuristic
     }
-    if(h == 4){
+    if(h == 0){
         qDebug() << "§";
         switch (bestIndex) {
         case 0: chosenA = &A_spiral; break;
