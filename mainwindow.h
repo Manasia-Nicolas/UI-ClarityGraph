@@ -26,7 +26,7 @@ public:
 
     // Returns 0..3 depending on the selected heuristic in the dropdown
     int currentHeuristicIndex() const { return heuristicIndex; }
-
+    std::vector<std::pair<double,double>> runMultipleLayouts(int V, int E, const std::vector<std::vector<int>> &G);
 private:
     // Recompute layout and refresh UI using current graphWidget state and heuristic
     void recomputeLayoutFromGraphState();

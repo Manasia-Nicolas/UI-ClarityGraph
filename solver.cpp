@@ -81,7 +81,7 @@ bool isPlanar(const vector<vector<int>>& adj) {
         }
     }
 
-    // Boyer–Myrvold planarity test (linear time, fully vetted)
+    // BoyerâMyrvold planarity test (linear time, fully vetted)
     return boyer_myrvold_planarity_test(g);
 }
 
@@ -392,7 +392,7 @@ std::vector<int> brute_force_layout(
     std::vector<int> grid_indices(V);
     for (int i = 0; i < V; ++i) grid_indices[i] = i;
 
-    std::vector<int> current_assignment = grid_indices; // vertices → grid position
+    std::vector<int> current_assignment = grid_indices; // vertices â grid position
 
     do {
         // Create positions: vertex v assigned to coords[current_assignment[v]]
@@ -432,7 +432,7 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     if(isPlanar(adj) == true)
         k = 0;
 
-    long long r = (long long)ceil(sqrt((double)V)) + 1;
+    long long r = (long long)ceil(sqrt((double)V)) * 4 / 3 + 1;
     double perturb = 2;
 
     mt19937 rng(123456);
@@ -503,7 +503,6 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     vector<pair<double,double>> layoutDegree      = buildLayout(A_degree);
     vector<pair<double,double>> layoutBary        = buildLayout(A_barycentric);
     vector<pair<double,double>> layoutRefined     = buildLayout(A_refined);
-    vector<pair<double,double>> layoutBrute       = buildLayout(A_brute);
 
     vector<int> crossings(4);
     crossings[0] = countCrossingsSolver(layoutSpiral,  adj);
@@ -529,18 +528,16 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
 
     const std::vector<int>* chosenA = nullptr;
     if(h != 0)
-    switch (h) {
-        qDebug() << "%";
+        switch (h) {
         case 1: chosenA = &A_spiral; break;           // Spiral heuristic
         case 2: chosenA = &A_degree; break;           // Degree greedy heuristic
         case 3: chosenA = &A_barycentric; break;      // Barycentric heuristic
         case 4: default: chosenA = &A_refined; break; // Distance refined barycentric heuristic
-    }
+        }
     if(h == 0){
-        qDebug() << "§";
         switch (bestIndex) {
         case 0: chosenA = &A_spiral; break;
-        case 1: chosenA = &A_degree, qDebug() << "±"; break;
+        case 1: chosenA = &A_degree; break;
         case 2: chosenA = &A_barycentric; break;
         case 3: chosenA = &A_refined; break;
         default: chosenA = &A_degree; break;
@@ -550,6 +547,7 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     // check the brute force solution
     if (V < 10)
     {
+        vector<pair<double,double>> layoutBrute       = buildLayout(A_brute);
         int bruteForceCrossings =  countCrossingsSolver(layoutBrute, adj);
         qDebug() << "bruteForceCrossings " << bruteForceCrossings ;
         if (bruteForceCrossings <  bestVal) chosenA = &A_brute;

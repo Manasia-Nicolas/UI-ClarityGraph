@@ -1646,6 +1646,9 @@
  mdp:/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/moc_predefs.h
  mdp:/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/graphwidget.h
  mdp:/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/mainwindow.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QEasingCurve
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QElapsedTimer
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QTimer
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20functional.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20iterator.h
@@ -1654,6 +1657,7 @@
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20utility.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q23type_traits.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q23utility.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qabstracteventdispatcher.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qabstractitemmodel.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qalgorithms.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qalloc.h
@@ -1665,6 +1669,7 @@
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qatomic.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qatomic_cxx11.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbasicatomic.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbasictimer.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbindingstorage.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearray.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearrayalgorithms.h
@@ -1684,8 +1689,12 @@
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcontiguouscache.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdarwinhelpers.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdatastream.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdeadlinetimer.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdebug.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qeasingcurve.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qelapsedtimer.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qendian.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qeventloop.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qexceptionhandling.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qflags.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfloat16.h
@@ -1762,6 +1771,7 @@
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtenvironmentvariables.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtextstream.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtformat_impl.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtimer.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtmetamacros.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtnoop.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h
@@ -1807,16 +1817,19 @@
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qtransform.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qvalidator.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QCheckBox
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QComboBox
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLabel
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QListWidget
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QWidget
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractbutton.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractitemdelegate.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractitemview.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractscrollarea.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractslider.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractspinbox.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qcheckbox.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qcombobox.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qframe.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlabel.h
@@ -2563,6 +2576,9 @@
  mdp:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  mdp:/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/moc_predefs.h
  mdp:/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/graphwidget.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QEasingCurve
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QElapsedTimer
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QTimer
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20functional.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20iterator.h
@@ -2571,6 +2587,7 @@
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20utility.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q23type_traits.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q23utility.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qabstracteventdispatcher.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qalgorithms.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qalloc.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qanystringview.h
@@ -2581,6 +2598,7 @@
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qatomic.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qatomic_cxx11.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbasicatomic.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbasictimer.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbindingstorage.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearray.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearrayalgorithms.h
@@ -2600,8 +2618,12 @@
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcontiguouscache.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdarwinhelpers.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdatastream.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdeadlinetimer.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdebug.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qeasingcurve.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qelapsedtimer.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qendian.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qeventloop.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qexceptionhandling.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qflags.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfloat16.h
@@ -2674,6 +2696,7 @@
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtenvironmentvariables.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtextstream.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtformat_impl.h
+ mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtimer.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtmetamacros.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtnoop.h
  mdp:/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h

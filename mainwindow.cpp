@@ -70,6 +70,37 @@ int MainWindow::countCrossings()
 
     return count;
 }
+std::vector<std::pair<double,double>> MainWindow::runMultipleLayouts(
+    int V, int E, const std::vector<std::vector<int>>& G)
+{
+    const int RUNS = 3;   // number of random attempts
+    int bestCross = INT_MAX;
+    std::vector<std::pair<double,double>> bestLayout;
+
+    for (int i = 0; i < RUNS; i++)
+    {
+        auto result = Solver::computeLayout(V, E, G, currentHeuristicIndex());
+        auto &layout = result.second;
+
+        // Apply temporary layout to nodes
+        for (int v = 0; v < V; v++) {
+            graphWidget->nodes[v].x = layout[v].first  * 60 + 80;
+            graphWidget->nodes[v].y = layout[v].second * 60 + 80;
+        }
+
+        int c = countCrossings();
+
+        if (c < bestCross) {
+            bestCross = c;
+            bestLayout = layout;
+        }
+        qDebug() << bestCross;
+    }
+
+    crossLabel->setText("Crossings = " + QString::number(bestCross));
+
+    return bestLayout;
+}
 
 
 void MainWindow::autoSave()
@@ -237,7 +268,7 @@ MainWindow::MainWindow(QWidget *parent)
         QVBoxLayout *leftLayout = new QVBoxLayout(leftPanel);
 
         //K
-        kLabel = new QLabel("k = ?");
+        kLabel = new QLabel("Planar?");
         kLabel->setStyleSheet("font-weight: bold; font-size: 16px; padding: 4px;");
         leftLayout->addWidget(kLabel);
 
@@ -656,6 +687,8 @@ MainWindow::MainWindow(QWidget *parent)
         connect(edgeEditor, &QTextEdit::textChanged,
                 this, [this, edgeEditor]() {
 
+            crossings = countCrossings();
+            crossLabel->setText("Crossings = " + QString::number(crossings));
                     // -------------------------
                     // Parse edges
                     // -------------------------
@@ -743,8 +776,14 @@ MainWindow::MainWindow(QWidget *parent)
                         }
 
                         auto layout = Solver::computeLayout(V, E, G, currentHeuristicIndex());
+                        layout.second = runMultipleLayouts(V, E, G);
+
+
                         k = layout.first;
-                        if (kLabel) kLabel->setText("k = " + QString::number(k));
+                        if(k == 0)
+                            kLabel->setText("Planar? Yes");
+                        else kLabel->setText("Planar? No");
+
 
                         double scale   = 60.0;
                         double offsetX = 80.0;
@@ -784,6 +823,7 @@ MainWindow::MainWindow(QWidget *parent)
 
                     crossings = countCrossings();
                     if (crossLabel) crossLabel->setText("Crossings = " + QString::number(crossings));
+
 
                     graphWidget->update();
                     autoSave();
@@ -873,10 +913,14 @@ void MainWindow::recomputeLayoutFromGraphState()
     E /= 2;
 
     auto layout = Solver::computeLayout(V, E, G, currentHeuristicIndex());
+    layout.second = runMultipleLayouts(V, E, G);
 
     // Update k label
     k = layout.first;
-    if (kLabel) kLabel->setText("k = " + QString::number(k));
+    if(k == 0)
+        kLabel->setText("Planar? Yes");
+    else kLabel->setText("Planar? No");
+
 
     // Build target positions and animate smoothly
     double scale   = 60.0;
