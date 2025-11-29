@@ -377,6 +377,47 @@ vector<int> distance_refinement_assignment(
 //------------------------------------------------------------
 
 //------------------------------------------------------------
+// --- Brute force for low V ---
+//------------------------------------------------------------
+
+std::vector<int> brute_force_layout(
+    int V,
+    const std::vector<std::vector<int>>& adj,
+    const std::vector<std::pair<double, double>>& coords)
+{
+    int best_crossings = std::numeric_limits<int>::max();
+    std::vector<int> best_assignment(V);
+
+    // Prepare list of grid indices: choose first V.
+    std::vector<int> grid_indices(V);
+    for (int i = 0; i < V; ++i) grid_indices[i] = i;
+
+    std::vector<int> current_assignment = grid_indices; // vertices → grid position
+
+    do {
+        // Create positions: vertex v assigned to coords[current_assignment[v]]
+        std::vector<std::pair<double, double>> layout(V);
+        for (int v = 0; v < V; ++v)
+            layout[v] = coords[current_assignment[v]];
+
+        int crossings = countCrossingsSolver(layout, adj);
+
+        if (crossings <= best_crossings) {
+            best_crossings = crossings;
+            best_assignment = current_assignment;
+        }
+    } while (std::next_permutation(current_assignment.begin(), current_assignment.end()));
+
+    return best_assignment;
+}
+
+
+//------------------------------------------------------------
+// --- End of Brute force ---
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
 // Main
 //------------------------------------------------------------
 
@@ -391,8 +432,8 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     if(isPlanar(adj) == true)
         k = 0;
 
-    long long r = (long long)ceil(sqrt((double)V));
-    double perturb = 0.15;
+    long long r = (long long)ceil(sqrt((double)V)) + 1;
+    double perturb = 0.3;
 
     mt19937 rng(123456);
     uniform_real_distribution<double> d(-perturb, perturb);
@@ -403,8 +444,8 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
 
     for (long long i = 0; i < r; i++) {
         for (long long j = 0; j < r; j++) {
-            double x = (double)j + d(rng);
-            double y = (double)i + d(rng);
+            double x = (double)j * 1.5 + d(rng);
+            double y = (double)i * 1.5 + d(rng);
             coords.emplace_back(x, y);
         }
     }
@@ -415,6 +456,11 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     vector<int> A_spiral      = spiral_assignment(V, spiral);
     vector<int> A_degree      = degree_greedy_assignment(V, adj, spiral);
     vector<int> A_barycentric = barycentric_assignment(V, adj, spiral);
+    vector<int> A_brute;
+    if (V < 11)
+    {
+        A_brute = brute_force_layout(V, adj, coords);
+    }
 
     // 4th Heuristic Call
     double target_d = sqrt((2.0 * E) / (M_PI * V));
@@ -457,6 +503,7 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     vector<pair<double,double>> layoutDegree      = buildLayout(A_degree);
     vector<pair<double,double>> layoutBary        = buildLayout(A_barycentric);
     vector<pair<double,double>> layoutRefined     = buildLayout(A_refined);
+    vector<pair<double,double>> layoutBrute       = buildLayout(A_brute);
 
     vector<int> crossings(4);
     crossings[0] = countCrossingsSolver(layoutSpiral,  adj);
@@ -500,6 +547,13 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
         }
     }
 
+    // check the brute force solution
+    if (V < 11)
+    {
+        int bruteForceCrossings =  countCrossingsSolver(layoutBrute, adj);
+        qDebug() << "bruteForceCrossings " << bruteForceCrossings ;
+        if (bruteForceCrossings <  bestVal) chosenA = &A_brute;
+    }
 
     std::vector<std::pair<double, double>> res;
     res.clear();
