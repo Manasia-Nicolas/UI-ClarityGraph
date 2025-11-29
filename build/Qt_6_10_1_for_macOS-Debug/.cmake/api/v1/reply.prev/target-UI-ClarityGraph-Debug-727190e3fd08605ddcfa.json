@@ -20,7 +20,8 @@
 			"include",
 			"find_package",
 			"find_dependency",
-			"_qt_internal_find_qt_dependencies"
+			"_qt_internal_find_qt_dependencies",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -45,7 +46,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 25,
+				"line" : 26,
 				"parent" : 0
 			},
 			{
@@ -69,100 +70,106 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 71,
+				"line" : 80,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 53,
+				"line" : 54,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 61,
 				"parent" : 0
 			},
 			{
 				"command" : 8,
 				"file" : 1,
-				"line" : 13,
+				"line" : 14,
 				"parent" : 0
 			},
 			{
 				"command" : 8,
 				"file" : 4,
 				"line" : 315,
-				"parent" : 7
+				"parent" : 8
 			},
 			{
 				"file" : 3,
-				"parent" : 8
+				"parent" : 9
 			},
 			{
 				"command" : 7,
 				"file" : 3,
 				"line" : 52,
-				"parent" : 9
+				"parent" : 10
 			},
 			{
 				"file" : 2,
-				"parent" : 10
+				"parent" : 11
 			},
 			{
 				"command" : 6,
 				"file" : 2,
 				"line" : 62,
-				"parent" : 11
+				"parent" : 12
 			},
 			{
 				"command" : 7,
 				"file" : 3,
 				"line" : 40,
-				"parent" : 9
+				"parent" : 10
 			},
 			{
 				"file" : 9,
-				"parent" : 13
+				"parent" : 14
 			},
 			{
 				"command" : 10,
 				"file" : 9,
 				"line" : 50,
-				"parent" : 14
+				"parent" : 15
 			},
 			{
 				"command" : 9,
 				"file" : 8,
 				"line" : 142,
-				"parent" : 15
+				"parent" : 16
 			},
 			{
 				"command" : 8,
 				"file" : 7,
 				"line" : 76,
-				"parent" : 16
+				"parent" : 17
 			},
 			{
 				"command" : 8,
 				"file" : 4,
 				"line" : 333,
-				"parent" : 17
+				"parent" : 18
 			},
 			{
 				"file" : 6,
-				"parent" : 18
+				"parent" : 19
 			},
 			{
 				"command" : 7,
 				"file" : 6,
 				"line" : 52,
-				"parent" : 19
+				"parent" : 20
 			},
 			{
 				"file" : 5,
-				"parent" : 20
+				"parent" : 21
 			},
 			{
 				"command" : 6,
 				"file" : 5,
 				"line" : 62,
-				"parent" : 21
+				"parent" : 22
 			},
 			{
 				"command" : 5,
@@ -174,39 +181,45 @@
 				"command" : 9,
 				"file" : 8,
 				"line" : 142,
-				"parent" : 15
+				"parent" : 16
 			},
 			{
 				"command" : 8,
 				"file" : 7,
 				"line" : 76,
-				"parent" : 24
+				"parent" : 25
 			},
 			{
 				"command" : 8,
 				"file" : 4,
 				"line" : 333,
-				"parent" : 25
+				"parent" : 26
 			},
 			{
 				"file" : 11,
-				"parent" : 26
+				"parent" : 27
 			},
 			{
 				"command" : 7,
 				"file" : 11,
 				"line" : 54,
-				"parent" : 27
+				"parent" : 28
 			},
 			{
 				"file" : 10,
-				"parent" : 28
+				"parent" : 29
 			},
 			{
 				"command" : 6,
 				"file" : 10,
 				"line" : 62,
-				"parent" : 29
+				"parent" : 30
+			},
+			{
+				"command" : 11,
+				"file" : 1,
+				"line" : 57,
+				"parent" : 0
 			}
 		]
 	},
@@ -222,7 +235,7 @@
 			"defines" : 
 			[
 				{
-					"backtrace" : 23,
+					"backtrace" : 24,
 					"define" : "QT_CORE_LIB"
 				},
 				{
@@ -237,7 +250,7 @@
 			"frameworks" : 
 			[
 				{
-					"backtrace" : 23,
+					"backtrace" : 24,
 					"isSystem" : true,
 					"path" : "/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework"
 				},
@@ -259,17 +272,21 @@
 					"path" : "/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include"
 				},
 				{
-					"backtrace" : 23,
+					"backtrace" : 32,
+					"path" : "/opt/homebrew/opt/boost/include"
+				},
+				{
+					"backtrace" : 24,
 					"isSystem" : true,
 					"path" : "/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers"
 				},
 				{
-					"backtrace" : 23,
+					"backtrace" : 24,
 					"isSystem" : true,
 					"path" : "/Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang"
 				},
 				{
-					"backtrace" : 23,
+					"backtrace" : 24,
 					"isSystem" : true,
 					"path" : "/Users/nicolas/Qt/6.10.1/macos/include"
 				},
@@ -289,8 +306,8 @@
 			{
 				"backtraces" : 
 				[
-					23,
-					23
+					24,
+					24
 				],
 				"standard" : "17"
 			},
@@ -309,11 +326,11 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "UI-ClarityGraph_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "UI-ClarityGraph_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "UI-ClarityGraph_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "UI-ClarityGraph::@6890427a1f51a3e7e1df",
@@ -357,47 +374,52 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 12,
+				"backtrace" : 7,
+				"fragment" : "-lboost_graph",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
 				"fragment" : "/Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 22,
+				"backtrace" : 23,
 				"fragment" : "-framework AppKit",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 22,
+				"backtrace" : 23,
 				"fragment" : "-framework OpenGL",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 22,
+				"backtrace" : 23,
 				"fragment" : "-framework ImageIO",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 22,
+				"backtrace" : 23,
 				"fragment" : "-framework Metal",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 23,
+				"backtrace" : 24,
 				"fragment" : "/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/QtCore",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 30,
+				"backtrace" : 31,
 				"fragment" : "-framework IOKit",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 30,
+				"backtrace" : 31,
 				"fragment" : "-framework DiskArbitration",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 30,
+				"backtrace" : 31,
 				"fragment" : "-framework UniformTypeIdentifiers",
 				"role" : "libraries"
 			}

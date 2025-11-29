@@ -75,4 +75,6 @@ public:
 
 signals:
     void nodeClicked(int index);   // used to sync with node list
+    void nodeMoved();
+    void nodeReleased();
 };

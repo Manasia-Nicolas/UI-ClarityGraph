@@ -397,6 +397,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"/opt/homebrew/opt/boost/include",
 		"/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers",
 		"/Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework",
 		"/Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang",

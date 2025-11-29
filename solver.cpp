@@ -7,12 +7,38 @@
 #include <algorithm>
 #include <limits>
 #include <qDebug>
+#include <boost/graph/adjacency_list.hpp>
+#include <boost/graph/boyer_myrvold_planar_test.hpp>
 
 using namespace std;
+using namespace boost;
+
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
+
+// Type aliases for Boost graph
+using BoostGraph = adjacency_list<vecS, vecS, undirectedS>;
+
+// Our wrapper: takes your adj and returns true if planar
+bool isPlanar(const vector<vector<int>>& adj) {
+    int n = (int)adj.size();
+    BoostGraph g(n);
+
+    // Add edges (avoid duplicates: only add u<v)
+    for (int u = 0; u < n; ++u) {
+        for (int v : adj[u]) {
+            if (u < v) {
+                add_edge(u, v, g);
+            }
+        }
+    }
+
+    // Boyer–Myrvold planarity test (linear time, fully vetted)
+    return boyer_myrvold_planarity_test(g);
+}
+
 
 
 int k_small(long long V, long long E) {
@@ -315,6 +341,9 @@ std::pair<int, std::vector<std::pair<double,double>>> Solver::computeLayout(int 
     double C = 4.108;
     double ratio = (double)E / (C * (double)V);
     long long k = (long long)ceil(ratio * ratio);
+
+    if(isPlanar(adj) == true)
+        k = 0;
 
     long long r = (long long)ceil(sqrt((double)V));
     double perturb = 0.15;

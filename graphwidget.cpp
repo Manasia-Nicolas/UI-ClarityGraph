@@ -157,6 +157,9 @@ void GraphWidget::mouseMoveEvent(QMouseEvent *event)
         nodes[draggedNodeIndex].y = g.y() + dragOffsetGraph.y();
 
         update();
+
+        emit nodeMoved();   // <---- ADD THIS
+
         return;
     }
 
@@ -177,6 +180,8 @@ void GraphWidget::mouseReleaseEvent(QMouseEvent *event)
     dragging = false;
     draggingNode = false;
     draggedNodeIndex = -1;
+
+    emit nodeReleased();
 }
 
 QPointF GraphWidget::screenToGraph(const QPointF &p, double zoom, double offsetX, double offsetY)

@@ -53,7 +53,7 @@ build CMakeFiles/UI-ClarityGraph.dir/UI-ClarityGraph_autogen/mocs_compilation.cp
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/UI-ClarityGraph.dir/UI-ClarityGraph_autogen/mocs_compilation.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
+  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -I/opt/homebrew/opt/boost/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/UI-ClarityGraph.dir
   OBJECT_FILE_DIR = CMakeFiles/UI-ClarityGraph.dir/UI-ClarityGraph_autogen
 
@@ -61,7 +61,7 @@ build CMakeFiles/UI-ClarityGraph.dir/main.cpp.o: CXX_COMPILER__UI-ClarityGraph_u
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/UI-ClarityGraph.dir/main.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
+  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -I/opt/homebrew/opt/boost/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/UI-ClarityGraph.dir
   OBJECT_FILE_DIR = CMakeFiles/UI-ClarityGraph.dir
 
@@ -69,7 +69,7 @@ build CMakeFiles/UI-ClarityGraph.dir/mainwindow.cpp.o: CXX_COMPILER__UI-ClarityG
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/UI-ClarityGraph.dir/mainwindow.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
+  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -I/opt/homebrew/opt/boost/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/UI-ClarityGraph.dir
   OBJECT_FILE_DIR = CMakeFiles/UI-ClarityGraph.dir
 
@@ -77,7 +77,7 @@ build CMakeFiles/UI-ClarityGraph.dir/graphwidget.cpp.o: CXX_COMPILER__UI-Clarity
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/UI-ClarityGraph.dir/graphwidget.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
+  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -I/opt/homebrew/opt/boost/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/UI-ClarityGraph.dir
   OBJECT_FILE_DIR = CMakeFiles/UI-ClarityGraph.dir
 
@@ -85,7 +85,7 @@ build CMakeFiles/UI-ClarityGraph.dir/namedelegate.cpp.o: CXX_COMPILER__UI-Clarit
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/UI-ClarityGraph.dir/namedelegate.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
+  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -I/opt/homebrew/opt/boost/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/UI-ClarityGraph.dir
   OBJECT_FILE_DIR = CMakeFiles/UI-ClarityGraph.dir
 
@@ -93,7 +93,7 @@ build CMakeFiles/UI-ClarityGraph.dir/RowNumberDelegate.cpp.o: CXX_COMPILER__UI-C
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/UI-ClarityGraph.dir/RowNumberDelegate.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
+  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -I/opt/homebrew/opt/boost/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/UI-ClarityGraph.dir
   OBJECT_FILE_DIR = CMakeFiles/UI-ClarityGraph.dir
 
@@ -101,7 +101,7 @@ build CMakeFiles/UI-ClarityGraph.dir/solver.cpp.o: CXX_COMPILER__UI-ClarityGraph
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/UI-ClarityGraph.dir/solver.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
+  INCLUDES = -I/Users/nicolas/Desktop/Proiecte/C++/UI-ClarityGraph/build/Qt_6_10_1_for_macOS-Debug/UI-ClarityGraph_autogen/include -I/opt/homebrew/opt/boost/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/nicolas/Qt/6.10.1/macos/lib -isystem /Users/nicolas/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/nicolas/Qt/6.10.1/macos/include -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/UI-ClarityGraph.dir
   OBJECT_FILE_DIR = CMakeFiles/UI-ClarityGraph.dir
 

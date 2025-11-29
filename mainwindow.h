@@ -5,6 +5,7 @@
 #include "graphwidget.h"
 #include <QListWidget>
 #include <QComboBox>
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,6 +21,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void autoSave();
+    int countCrossings();
 
 private:
     Ui::MainWindow *ui;
@@ -27,5 +29,9 @@ private:
     QListWidget *nodeList;       // List of all nodes
     QComboBox   *typeSelector;
     QComboBox *privSelector;
+    QLabel *kLabel;
+    int k = -1;
+    int crossings = 0;
+    QLabel *crossLabel;
 };
 #endif // MAINWINDOW_H

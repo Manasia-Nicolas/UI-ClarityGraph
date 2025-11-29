@@ -22,6 +22,55 @@
 #include <QMessageBox>
 #include <QToolBar>
 
+static bool segmentsIntersect(
+    QPointF A, QPointF B,
+    QPointF C, QPointF D)
+{
+    auto ccw = [](QPointF A, QPointF B, QPointF C) {
+        return (C.y() - A.y()) * (B.x() - A.x()) >
+               (B.y() - A.y()) * (C.x() - A.x());
+    };
+
+    return ccw(A,C,D) != ccw(B,C,D) &&
+           ccw(A,B,C) != ccw(A,B,D);
+}
+
+int MainWindow::countCrossings()
+{
+    int count = 0;
+
+    auto &nodes = graphWidget->nodes;
+    auto &adj   = graphWidget->adj;
+
+    // For every pair of edges
+    for (int u = 0; u < adj.size(); u++) {
+        for (int v : adj[u]) {
+            if (u >= v) continue; // avoid duplicates
+
+            QPointF A(nodes[u].x, nodes[u].y);
+            QPointF B(nodes[v].x, nodes[v].y);
+
+            for (int x = u + 1; x < adj.size(); x++) {
+                for (int y : adj[x]) {
+
+                    if (x >= y) continue;
+                    if (u == x || u == y || v == x || v == y)
+                        continue; // share vertex → not a crossing
+
+                    QPointF C(nodes[x].x, nodes[x].y);
+                    QPointF D(nodes[y].x, nodes[y].y);
+
+                    if (segmentsIntersect(A, B, C, D))
+                        count++;
+                }
+            }
+        }
+    }
+
+    return count;
+}
+
+
 void MainWindow::autoSave()
 {
     QString basePath = QCoreApplication::applicationDirPath();
@@ -120,6 +169,16 @@ MainWindow::MainWindow(QWidget *parent)
         QWidget *leftPanel = new QWidget();
         leftPanel->setMinimumWidth(250);
         QVBoxLayout *leftLayout = new QVBoxLayout(leftPanel);
+
+        //K
+        kLabel = new QLabel("k = ?");
+        kLabel->setStyleSheet("font-weight: bold; font-size: 16px; padding: 4px;");
+        leftLayout->addWidget(kLabel);
+
+        //cross counter
+        crossLabel = new QLabel("Crossings = 0");
+        crossLabel->setStyleSheet("font-weight: bold; font-size: 16px; padding: 4px;");
+        leftLayout->addWidget(crossLabel);
 
         // Node list
         QLabel *nodeLabel = new QLabel("Nodes:");
@@ -593,6 +652,9 @@ MainWindow::MainWindow(QWidget *parent)
                     // -------------------------
                     std::pair<int, std::vector<std::pair<double,double>>> layout = Solver::computeLayout(V, E, G);
 
+                    k = layout.first;
+                    kLabel->setText("k = " + QString::number(k));   // <---- ADD THIS
+
                     ///qDebug() << layout;
 
                     // -------------------------
@@ -627,9 +689,24 @@ MainWindow::MainWindow(QWidget *parent)
                     // Update graph
                     // -------------------------
                     graphWidget->setAdjacency(G);
+
+                    crossings = countCrossings();
+                    crossLabel->setText("Crossings = " + QString::number(crossings));
+
                     graphWidget->update();
                     autoSave();
                 });
+
+        connect(graphWidget, &GraphWidget::nodeMoved, this, [this]() {
+            // Recalculate crossings live during dragging
+            crossings = countCrossings();
+            crossLabel->setText("Crossings = " + QString::number(crossings));
+        });
+
+        connect(graphWidget, &GraphWidget::nodeReleased, this, [this]() {
+            crossings = countCrossings();
+            crossLabel->setText("Crossings = " + QString::number(crossings));
+        });
     });
 }
 

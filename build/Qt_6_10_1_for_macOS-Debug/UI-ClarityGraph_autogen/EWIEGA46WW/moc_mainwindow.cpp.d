@@ -777,6 +777,7 @@
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qglobalstatic.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qhash.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qhashfunctions.h \
+  /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qiodevice.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qiodevicebase.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qitemselectionmodel.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qiterable.h \
@@ -851,6 +852,7 @@
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtversionchecks.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtypeinfo.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtypes.h \
+  /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qurl.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qutf8stringview.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qvariant.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qvarlengtharray.h \
@@ -871,12 +873,14 @@
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qkeysequence.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpaintdevice.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpalette.h \
+  /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpicture.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpixelformat.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpixmap.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpolygon.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qregion.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qrgb.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qrgba64.h \
+  /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qtextdocument.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qtgui-config.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qtguiexports.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qtguiglobal.h \
@@ -884,6 +888,7 @@
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qvalidator.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QComboBox \
+  /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QListWidget \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QWidget \
@@ -894,6 +899,7 @@
   /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractspinbox.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qcombobox.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qframe.h \
+  /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlabel.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlistview.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlistwidget.h \
   /Users/nicolas/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qmainwindow.h \
