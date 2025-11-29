@@ -23,15 +23,24 @@ public:
     void autoSave();
     int countCrossings();
 
+    // Returns 0..3 depending on the selected heuristic in the dropdown
+    int currentHeuristicIndex() const { return heuristicIndex; }
+
 private:
     Ui::MainWindow *ui;
     GraphWidget *graphWidget;
     QListWidget *nodeList;       // List of all nodes
     QComboBox   *typeSelector;
     QComboBox *privSelector;
+<<<<<<< HEAD
     QLabel *kLabel;
     int k = -1;
     int crossings = 0;
     QLabel *crossLabel;
+=======
+    QComboBox *heuristicSelector; // Top-right dropdown for heuristic selection
+
+    int heuristicIndex = 0;      // 0..3 maps to the selected heuristic
+>>>>>>> fd0587501fd72be52f04a2595574dc43a1a73896
 };
 #endif // MAINWINDOW_H

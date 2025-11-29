@@ -156,7 +156,33 @@ MainWindow::MainWindow(QWidget *parent)
         fileMenu->addAction(buttonExport);
         fileMenu->addAction(buttonImport);
 
+        // Top-right heuristic selector combo box placed on the main toolbar
+        heuristicSelector = new QComboBox(toolbar);
+        heuristicSelector->addItems({
+            "Spiral heuristic",
+            "Degree greedy heuristic",
+            "Barycentric heuristic",
+            "distance refined barycentric heuristic"
+        });
+        heuristicSelector->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+        heuristicSelector->setToolTip("Choose layout heuristic");
 
+        // Place it at the far right of the main toolbar (more reliable than menubar corner widgets across platforms)
+        QWidget *toolbarSpacer = new QWidget(this);
+        toolbarSpacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        toolbar->addWidget(toolbarSpacer);
+        toolbar->addWidget(heuristicSelector);
+
+        // Initialize and track heuristic index (0..3)
+        heuristicSelector->setCurrentIndex(0);
+        heuristicIndex = 0;
+        connect(heuristicSelector, QOverload<int>::of(&QComboBox::currentIndexChanged),
+                this, [this](int idx){
+                    // clamp to 0..3 to be safe if items change
+                    if (idx < 0) idx = 0;
+                    if (idx > 3) idx = 3;
+                    heuristicIndex = idx;
+                });
 
         // --------------------------------------------------------
         // SPLITTER
@@ -297,11 +323,14 @@ MainWindow::MainWindow(QWidget *parent)
 
                 });
         connect(buttonImport, &QAction::triggered, this, [this, projectsFolder, edgeEditor](){
+            QFileDialog::Options opts = QFileDialog::DontUseNativeDialog;
             QString filePath = QFileDialog::getOpenFileName(
                 this,
                 "Open Project JSON",
                 projectsFolder,
-                "JSON Files (*.json)"
+                "JSON Files (*.json)",
+                nullptr,
+                opts
                 );
 
             if (filePath.isEmpty())
@@ -650,7 +679,7 @@ MainWindow::MainWindow(QWidget *parent)
                     // -------------------------
                     // Call layout solver
                     // -------------------------
-                    std::pair<int, std::vector<std::pair<double,double>>> layout = Solver::computeLayout(V, E, G);
+                    std::pair<int, std::vector<std::pair<double,double>>> layout = Solver::computeLayout(V, E, G, currentHeuristicIndex());
 
                     k = layout.first;
                     kLabel->setText("k = " + QString::number(k));   // <---- ADD THIS

@@ -1,0 +1,13 @@
+# ninja log v7
+1	193	1764370784442564531	UI-ClarityGraph_autogen/timestamp	909003b959d196b4
+1	193	1764370784442564531	UI-ClarityGraph_autogen/mocs_compilation.cpp	909003b959d196b4
+1	193	1764370784442564531	/home/bk/CLionProjects/UI-ClarityGraph/build/UI-ClarityGraph_autogen/timestamp	909003b959d196b4
+1	193	1764370784442564531	/home/bk/CLionProjects/UI-ClarityGraph/build/UI-ClarityGraph_autogen/mocs_compilation.cpp	909003b959d196b4
+198	1611	1764370784456917721	CMakeFiles/UI-ClarityGraph.dir/solver.cpp.o	b6b7f4872dfa2076
+198	1683	1764370784456629474	CMakeFiles/UI-ClarityGraph.dir/namedelegate.cpp.o	d974dbcbb9899840
+197	1712	1764370784456155143	CMakeFiles/UI-ClarityGraph.dir/main.cpp.o	26df2d20d72097d3
+198	1735	1764370784456781422	CMakeFiles/UI-ClarityGraph.dir/RowNumberDelegate.cpp.o	29b78d7149a24d49
+198	1820	1764370784456486492	CMakeFiles/UI-ClarityGraph.dir/graphwidget.cpp.o	3a4cff3f72a683cb
+197	1821	1764370784454564827	CMakeFiles/UI-ClarityGraph.dir/UI-ClarityGraph_autogen/mocs_compilation.cpp.o	81967a7a803c07ab
+198	2526	1764370784456334473	CMakeFiles/UI-ClarityGraph.dir/mainwindow.cpp.o	c624b43ec9b100cb
+2526	2753	1764370786783622534	UI-ClarityGraph	6158c7390359fbd1
