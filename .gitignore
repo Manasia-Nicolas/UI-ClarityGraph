@@ -15,4 +15,4 @@ CMakeCache.txt
 *.dylib
 moc_*
 qrc_*
-Makefile*
+Makefile*.DS_Store
